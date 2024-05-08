@@ -1,0 +1,157 @@
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{makecell}
+
+\usepackage{datetime}
+\usepackage{soul}
+\usepackage{xstring}
+
+% set enumerate
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+
+\newcommand{\bmstuY}{\the\year}
+\newcommand{\bmstuYear}{\bmstuY{} г.}
+\newcommand{\bmstuCityYear}{г. Москва, \bmstuYear{}}
+
+\newcommand{\headerSize}{\small}
+\newcommand{\bmstuHeader}{
+  \centering
+  {
+	  \singlespacing \small
+	  Министерство науки и высшего образования Российской Федерации \\
+	  Федеральное государственное бюджетное образовательное учреждение \\
+	  высшего образования \\
+	  <<Московский государственный технический университет \\
+	  имени Н.~Э.~Баумана \\
+	  (национальный исследовательский университет)>> \\
+	  (МГТУ им. Н.~Э.~Баумана) \\
+  }
+  \vspace{-4.2mm}
+  \vhrulefill{0.9mm} \\
+  \vspace{-7mm}
+  \vhrulefill{0.2mm} \\
+  }
+
+  \newcommand{\phantomBmstuTaskYear}{20\phantom{\bmstuYear{}} г.}
+  \newcommand{\bmstuDateRule}{\underline{«\the\day» \monthname[\the\month] \bmstuYear{}}}
+  \newcommand{\bmstuPhantomDateRule}{\underline{«\phantom{\the\day}» \phantom{\monthname[\the\month]} \phantom{\bmstuYear{}}}}
+%--------------------------------------
+  \newcommand{\makeDepartHeadStatement}[2]{
+    \begin{flushright}
+      {
+	      \singlespacing\taskTextSize\noindent
+	      \begin{tabular}{@{}cc@{}}
+          УТВЕРЖДАЮ &\\
+          Заведующий кафедрой & \underline{#1}\\
+          & \tiny(Индекс) \\
+          \underline{\phantom{Заведующий кафедрой}}& \underline{#2} \\
+          & \tiny(И.О. Фамилия) \\
+          \bmstuPhantomDateRule{} & \underline{\phantomBmstuTaskYear{}} \\
+        \end{tabular}
+      }
+    \end{flushright}
+  }
+  %--------------------------------------
+  \newcommand{\makelargetask}[1]{
+    \begin{center}
+      {
+	      \singlespacing \large
+        {\textbf{ЗАДАНИЕ}}\\
+        {\textbf{на выполнение #1}}
+      }
+    \end{center}
+  }
+  %--------------------------------------
+  \newcommand{\taskpoints}[1]{
+    {
+	    \singlespacing \footnotesize
+	    \setlist{nosep}
+	    \setlist{nolistsep}
+      \begin{enumerate}[leftmargin=*]
+        \item 
+          \textbf{Техническое задание:} \\
+          \noindent\bmstuTechTask{} \\
+        \item 
+          \textbf{Оформление #1:}
+          \begin{enumerate}[leftmargin=*]
+            \item
+              Расчетно-пояснительная записка на 25-30 листах формата А4. \\
+              Расчетно-пояснительная записка должна содержать постановку задачи, введение, аналитическую часть, конструкторскую часть, технологическую часть, исследовательский раздел, заключение, список литературы. 
+            \item
+              Перечень графического материала (плакаты, схемы, чертежи и т.п.). На защиту проекта должна быть представлена презентация, состоящая из 15-20 слайдов. На слайдах должны быть отражены: постановка задачи, использованные методы и алгоритмы, расчетные соотношения, структура комплекса программ, диаграмма классов, интерфейс, характеристики разработанного ПО, результаты проведенных исследований.
+          \end{enumerate}
+
+      \end{enumerate}
+      Дата выдачи задания \bmstuPhantomDateRule{}\underline{\phantomBmstuTaskYear{}}
+    }
+  }
+  %--------------------------------------
+    \newcommand{\makefields}[3]{
+      \vspace*{\fill}
+      \noindent\begin{tabularx}{\textwidth}{@{}lcXcl@{}}
+        Студент & \underline{#1} & &\underline{\phantom{(Подпись, дата)}} & \underline{#2} \\
+        & \tiny(Группа) & &\tiny(Подпись, дата) & \tiny(И.О. Фамилия) \\
+        \\
+        Руководитель~курсовой~работы & & &\underline{\phantom{(Подпись, дата)}} & \underline{#3} \\
+        & & &\tiny(Подпись, дата) & \tiny(И.О. Фамилия) \\
+      \end{tabularx}
+    }
+  %--------------------------------------
+      \newcommand{\maketaskdesc}[5]{
+      \noindent\textbf{по дисциплине: }\underline{#1}
+      \\Студент группы \underline{#2}\\
+      \underline{#3} \\
+      {\tiny(Фамилия, имя, отчество)}\\
+      Тема #4: #5 \\
+      Направленность работы (учебная, исследовательская, практическая, производственная, др.) \underline{учебная} \\
+      Источник тематики (кафедра, предприятие, НИР) \underline{кафедра} \\
+      График выполнения работы: 25\% к \underline{4} нед., 50\% к \underline{7} нед., 75\% к \underline{11} нед., 100\% к \underline{14} нед.
+  }
+  %--------------------------------------
+
+  \newcommand{\makecourseworktask}[9]
+  {
+    \newcommand{\bmstuDepart}{#1}
+    \newcommand{\headOfDepart}{#2}
+    \newcommand{\bmstuDiscipl}{#3}
+    \newcommand{\bmstuGroup}{#4}
+    \newcommand{\bmstuFullStudName}{#5}
+    \newcommand{\bmstuTheme}{#6}
+    \newcommand{\bmstuTechTask}{#7}
+    \newcommand{\bmstuStudName}{#8}
+    \newcommand{\bmstuWorkHead}{#9}
+
+    \newcommand{\bmstuTaskType}{курсовой работы}
+    \newcommand{\taskTextSize}{\footnotesize}
+    \newpage
+    {
+      \bmstuHeader
+    }
+    \makeDepartHeadStatement{\bmstuDepart}{\headOfDepart}
+
+    \makelargetask{\bmstuTaskType}
+
+    {
+	    \singlespacing \taskTextSize
+      \maketaskdesc{\bmstuDiscipl}{\bmstuGroup}{\bmstuFullStudName}{\bmstuTaskType}{\bmstuTheme}
+
+      \taskpoints{\bmstuTaskType}
+
+
+      \vfill
+
+		  \noindent\begin{tabularx}{\textwidth}{@{}>{\hsize=.5\hsize}X>{\hsize=.25\hsize}X>{\hsize=.25\hsize}X@{}}
+			  \titlepagestudentscontent
+
+			  \titlepageotherscontent
+		  \end{tabularx}
+      % \maketitlepageothers{}
+      % \makefields{\bmstuGroup}{\bmstuStudName}{\bmstuWorkHead}
+    }
+  }
+

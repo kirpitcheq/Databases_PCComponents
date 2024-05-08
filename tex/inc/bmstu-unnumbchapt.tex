@@ -1,0 +1,12 @@
+\newcommand\makeunnumchapt[1]{
+  \addcontentsline{toc}{chapter}{#1}  
+  \chapter*{#1}
+  }
+\newcommand\makeintro[1]{
+  \makeunnumchapt{ВВЕДЕНИЕ}
+  #1
+  }
+\newcommand\makeconclusion[1]{
+  \makeunnumchapt{ЗАКЛЮЧЕНИЕ}
+  #1
+}

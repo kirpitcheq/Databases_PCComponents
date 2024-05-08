@@ -1,0 +1,14 @@
+.PHONY : build move
+
+see : build move
+
+build : main.tex
+	pdflatex -shell-escape main.tex
+	biber main
+	biber main
+	pdflatex -shell-escape main.tex
+	pdflatex -shell-escape main.tex
+
+move : main.pdf
+	mkdir -p ../pdf
+	mv -f main.pdf ../pdf/main.pdf

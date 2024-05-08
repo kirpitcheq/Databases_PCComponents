@@ -1,0 +1,31 @@
+% \usepackage{mdframed}
+\usepackage{minted}
+	\renewcommand\listingscaption{Листинг}
+% \usemintedstyle{bw}
+\setminted{
+    breaklines,
+    breakanywhere,
+    linenos,
+    xleftmargin=2em,
+    fontsize=\footnotesize,
+    baselinestretch=1,
+    linenos=true,
+    frame=single
+}
+\usepackage{caption}
+\usepackage{datatool}
+\newenvironment{code}{\captionsetup{type=figure}}
+
+\newcommand{\listingsrc}[4][]{
+    \inputminted[#1]{#2}{#3}
+    \captionof{listing}{#4. Имя файла #3}
+    \vspace{\baselineskip}
+}
+
+\newcommand{\listingminted}[3]{
+    \inputminted{#2}{./inc/lst/#1}
+    \captionof{listing}{#3\label{lst:#1}}
+    \vspace{\baselineskip}
+}
+
+\usepackage{shellesc}
